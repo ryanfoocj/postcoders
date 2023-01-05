@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAreaData } from "./api";
+import SearchBar from "./components/SearchBar";
 
 import "./App.css";
 
 function App() {
-  const [areas, setAreas] = useState([]);
+  const [areas, setAreas] = useState({});
 
   const load = async () => {
     try {
@@ -16,14 +17,13 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    load();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="App">
       <h1>Postcoders</h1>
-      <h2>{`Areas for BB10: ${areas.length}`}</h2>
+      <SearchBar setAreas={setAreas} />
+      <h2>{`Results for ${areas.area}: ${areas.results.length}`}</h2>
     </div>
   );
 }
