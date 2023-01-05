@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getAreaData } from "../api/index";
 
-const SearchBar = ({ setAreas }) => {
+const SearchBar = ({ setAreas, setSearchState }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleInput = (event) => {
@@ -13,6 +13,7 @@ const SearchBar = ({ setAreas }) => {
     getAreaData(searchInput)
       .then((data) => {
         setAreas({ area: searchInput, results: data });
+        setSearchState(true);
       })
       .catch((err) => {
         console.log("Area could not be found");
