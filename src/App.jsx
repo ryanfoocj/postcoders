@@ -9,7 +9,7 @@ function App() {
   const [areas, setAreas] = useState({});
   const [searchState, setSearchState] = useState(false);
 
-  const load = async () => {
+  /* const load = async () => {
     try {
       const areaData = await getAreaData();
 
@@ -19,7 +19,7 @@ function App() {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, []); */
 
   return (
     <div className="App">
