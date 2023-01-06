@@ -1,34 +1,38 @@
-import { useEffect, useState } from 'react'
-import { getAreaData } from './api'
+import { useEffect, useState } from "react";
+import { getAreaData } from "./api";
+import SearchBar from "./components/SearchBar";
 
-import './App.css'
+import "./App.css";
+import AreaDisplay from "./components/AreaDisplay";
 
 function App() {
+  const [areas, setAreas] = useState({});
+  const [searchState, setSearchState] = useState(false);
 
-  const [areas, setAreas] = useState([]);
-
-  const load = async () => {
+  /* const load = async () => {
     try {
-      const areaData = await getAreaData()
+      const areaData = await getAreaData();
 
-      areas.concat(areaData);
-  
-      setAreas(areas);
+      setAreas(areaData);
     } catch (error) {
-      window.alert("todo: fix app")
+      window.alert("todo: fix app");
     }
-  }
+  };
 
-  useEffect(() => {
-    load();
-  }, []);
+  useEffect(() => {}, []); */
 
   return (
     <div className="App">
       <h1>Postcoders</h1>
-      <h2>{`Areas for BB10: ${areas.length}`}</h2>
+      <SearchBar setAreas={setAreas} setSearchState={setSearchState} />
+      <h2>
+        {searchState
+          ? `Results for ${areas.area}: ${areas.results.length}`
+          : "Start searching for an area!"}
+      </h2>
+      {searchState ? <AreaDisplay results={areas.results} /> : null}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
